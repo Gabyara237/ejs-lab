@@ -10,20 +10,15 @@
 
     <h1>Full Menu</h1>
 
-    <%const itemMenu = (index,category)=>{%>
-        <div>
-            <h4>Name:<%= menuByCategory[category][index].name%></h4>
-            <p>Price: <%= menuByCategory[category][index].price%></p>
-            <p>Rating: <%= menuByCategory[category][index].rating%></p>
-            <p>Details: <%= menuByCategory[category][index].details%></p>
-        </div>
-    <%}%>
-
-
     <% Object.keys(menuByCategory).forEach((category)=>{%>
-        <h2><%= category%></h2>
+        <h2><%= category.charAt(0).toUpperCase() + category.slice(1)%></h2>
         <%menuByCategory[category].forEach((item, index)=> {%>
-            <%=itemMenu(index, category)%>
+             <div>
+                <h4>Name:<%= item.name%></h4>
+                <p>Price: <%= item.price%></p>
+                <p>Rating: <%= item.rating%></p>
+                <p>Details: <%= item.details%></p>
+            </div>
         <%});%>
     <%})%>
 
