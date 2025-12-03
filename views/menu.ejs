@@ -14,9 +14,15 @@
         <h2><%= category.charAt(0).toUpperCase() + category.slice(1)%></h2>
         <%menuByCategory[category].forEach((item, index)=> {%>
              <div>
-                <h4>Name:<%= item.name%></h4>
+                <h4>Name:<%= item.name%> 
+                <%if(item.rating===5){%>
+                    ⭐⭐⭐⭐⭐
+                <%}%>
+                </h4>
                 <p>Price: <%= item.price%></p>
-                <p>Rating: <%= item.rating%></p>
+
+                <p>Rating: <%= item.rating%>
+                </p>
                 <p>Details: <%= item.details%></p>
             </div>
         <%});%>
