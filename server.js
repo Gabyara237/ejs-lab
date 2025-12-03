@@ -50,6 +50,7 @@ const RESTAURANT = {
     }
   ]
 }
+
 let menuByCategory = {}
 
 RESTAURANT.menu.forEach((item)=>{
@@ -59,7 +60,7 @@ RESTAURANT.menu.forEach((item)=>{
         menuByCategory[item.category]=[item];
     }
 })
-console.log(menuByCategory);
+
 
 app.get('/',(req,res)=>{
     res.render('home.ejs',{
@@ -70,6 +71,16 @@ app.get('/',(req,res)=>{
 app.get('/menu',(req, res)=>{
     res.render('menu.ejs',{
         menuByCategory: menuByCategory
+    })
+})
+
+app.get('/menu/:category',(req,res)=>{
+    const category= req.params.category;
+    const nameCapitalize = category.charAt(0).toUpperCase() + category.slice(1);
+    console.log(nameCapitalize)
+    res.render('category.ejs',{
+        name: nameCapitalize,
+        items: menuByCategory[category]
     })
 })
 
