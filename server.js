@@ -50,6 +50,16 @@ const RESTAURANT = {
     }
   ]
 }
+let menuByCategory = {}
+
+RESTAURANT.menu.forEach((item)=>{
+    if(item.category in menuByCategory){
+        menuByCategory[item.category].push(item);
+    }else{
+        menuByCategory[item.category]=[item];
+    }
+})
+console.log(menuByCategory);
 
 app.get('/',(req,res)=>{
     res.render('home.ejs',{
@@ -59,7 +69,7 @@ app.get('/',(req,res)=>{
 
 app.get('/menu',(req, res)=>{
     res.render('menu.ejs',{
-        menu: RESTAURANT.menu
+        menuByCategory: menuByCategory
     })
 })
 

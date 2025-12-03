@@ -10,36 +10,22 @@
 
     <h1>Full Menu</h1>
 
-    <%const itemMenu = (index)=>{%>
+    <%const itemMenu = (index,category)=>{%>
         <div>
-            <h4>Name:<%= menu[index].name%></h4>
-            <p>Price: <%= menu[index].price%></p>
-            <p>Rating: <%= menu[index].rating%></p>
-            <p>Details: <%= menu[index].details%></p>
+            <h4>Name:<%= menuByCategory[category][index].name%></h4>
+            <p>Price: <%= menuByCategory[category][index].price%></p>
+            <p>Rating: <%= menuByCategory[category][index].rating%></p>
+            <p>Details: <%= menuByCategory[category][index].details%></p>
         </div>
     <%}%>
 
 
-    <h2> Mains </h2>
-    <% menu.forEach((item,index) => {%>
-        <%if(item.category==="mains"){%>
-            <%= itemMenu(index)%>
-        <%}%>
-    <%});%>
-   
-    <h2> Desserts </h2>
-    <% menu.forEach((item,index) => {%>
-        <%if(item.category==="desserts"){%>
-            <%= itemMenu(index)%>
-        <%}%>
-    <%});%>
-
-    <h2> Sides </h2>
-    <% menu.forEach((item,index) => {%>
-        <%if(item.category==="sides"){%>
-            <%= itemMenu(index)%>
-        <%}%>
-    <%});%>
+    <% Object.keys(menuByCategory).forEach((category)=>{%>
+        <h2><%= category%></h2>
+        <%menuByCategory[category].forEach((item, index)=> {%>
+            <%=itemMenu(index, category)%>
+        <%});%>
+    <%})%>
 
     
 
